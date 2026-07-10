@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!-- Copyright (c) 2026 Peter Lulham. Licensed under the MIT License. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorway</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <main class="layout-container"></main>
+        
+        <section class="controls" aria-label="Layout Controls">
+            <button id="add-btn" title="Add Panel" aria-label="Add Panel">+</button>
+            <button id="remove-btn" title="Remove Panel" aria-label="Remove Panel">−</button>
+        </section>
+
+        <div class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="color-modal">
+                <button id="close-modal" class="close-modal" aria-label="Close modal">&times;</button>
+                <h2 id="modal-title">Edit Color</h2>
+                
+                <div class="input-group">
+                    <label for="hex-input">Hex</label>
+                    <input type="text" id="hex-input" placeholder="#ffffff">
+                </div>
+
+                <fieldset class="input-group">
+                    <legend>RGB</legend>
+                    <div class="rgb-inputs">
+                        <label for="rgb-r" class="visually-hidden">Red</label>
+                        <input type="number" id="rgb-r" min="0" max="255" placeholder="R">
+                        
+                        <label for="rgb-g" class="visually-hidden">Green</label>
+                        <input type="number" id="rgb-g" min="0" max="255" placeholder="G">
+                        
+                        <label for="rgb-b" class="visually-hidden">Blue</label>
+                        <input type="number" id="rgb-b" min="0" max="255" placeholder="B">
+                    </div>
+                </fieldset>
+
+                <fieldset class="input-group">
+                    <legend>HSL</legend>
+                    <div class="hsl-sliders">
+                        <div class="slider-row">
+                            <label for="hsl-h">H</label>
+                            <input type="range" id="hsl-h" min="0" max="360">
+                        </div>
+                        <div class="slider-row">
+                            <label for="hsl-s">S</label>
+                            <input type="range" id="hsl-s" min="0" max="100">
+                        </div>
+                        <div class="slider-row">
+                            <label for="hsl-l">L</label>
+                            <input type="range" id="hsl-l" min="0" max="100">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div id="color-preview" class="color-preview" aria-label="Color Preview"></div>
+            </div>
+        </div>
+    </div>
+    <script type="module" src="app.js"></script>
+</body>
+</html>

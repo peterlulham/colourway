@@ -1,0 +1,227 @@
+/* Copyright (c) 2026 Peter Lulham. Licensed under the MIT License. */
+
+:root {
+    --color-bg-overlay: rgba(0, 0, 0, 0.5);
+    --color-surface: #ffffff;
+    --color-text: #333333;
+    --color-border: #cccccc;
+    --color-shadow: rgba(0, 0, 0, 0.1);
+    --radius-md: 12px;
+    --radius-round: 25px;
+    --spacing-base: 1rem;
+    --transition-speed: 0.3s;
+    --control-size: 50px;
+}
+
+/* CSS Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--color-text);
+}
+
+.app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.layout-container {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+/* Tiling Tree Elements */
+.panel {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transition: background-color var(--transition-speed) ease;
+}
+
+.split-container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.split-vertical {
+    flex-direction: row;
+}
+
+.split-horizontal {
+    flex-direction: column;
+}
+
+/* Controls */
+.controls {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 10;
+}
+
+.controls button {
+    width: var(--control-size);
+    height: var(--control-size);
+    border-radius: var(--radius-round);
+    border: none;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 6px var(--color-shadow);
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.controls button:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.controls button:active {
+    transform: scale(0.95);
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-bg-overlay);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.color-modal {
+    background: var(--color-surface);
+    padding: 2rem;
+    border-radius: var(--radius-md);
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.color-modal h2 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group legend {
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+}
+
+.rgb-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.hsl-sliders .slider-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.hsl-sliders span, .hsl-sliders label {
+    width: 20px;
+    font-size: 0.8rem;
+}
+
+.hsl-sliders input[type="range"] {
+    flex-grow: 1;
+}
+
+#color-preview {
+    width: 100%;
+    height: 50px;
+    border-radius: 4px;
+    margin-top: 1rem;
+    border: 1px solid #eee;
+}
+
+/* Utilities */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .split-vertical {
+        flex-direction: column !important;
+    }
+    
+    .color-modal {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .controls button {
+        width: 45px;
+        height: 45px;
+    }
+}

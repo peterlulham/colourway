@@ -1,0 +1,9 @@
+name: colourway
+
+services:
+  app:
+    image: docker.io/library/nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/usr/share/nginx/html

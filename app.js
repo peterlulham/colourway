@@ -1,15 +1,15 @@
 // Copyright (c) 2026 Peter Lulham. Licensed under the MIT License.
 
 /**
- * Colorway App Logic
+ * Colourway App Logic
  */
 
 // --- Data Structures ---
 
 export class LeafNode {
-    constructor(id, color) {
+    constructor(id, colour) {
         this.id = id;
-        this.color = color;
+        this.colour = colour;
         this.type = 'leaf';
     }
 }
@@ -102,17 +102,17 @@ export function hslToRgb(h, s, l) {
     };
 }
 
-export function getRandomColor() {
+export function getRandomColour() {
     return '#' + Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, '0');
 }
 
 // --- Main Application Class ---
 
-export class ColorwayApp {
+export class ColourwayApp {
     constructor() {
-        const initialColor = getRandomColor();
-        this.panels = [{ id: 1, color: initialColor }];
-        this.layoutTree = new LeafNode(1, initialColor);
+        const initialColour = getRandomColour();
+        this.panels = [{ id: 1, colour: initialColour }];
+        this.layoutTree = new LeafNode(1, initialColour);
         this.nextId = 2;
         this.editingPanelId = null;
 
@@ -129,7 +129,7 @@ export class ColorwayApp {
         this.hslH = document.getElementById('hsl-h');
         this.hslS = document.getElementById('hsl-s');
         this.hslL = document.getElementById('hsl-l');
-        this.colorPreview = document.getElementById('color-preview');
+        this.colourPreview = document.getElementById('colour-preview');
 
         this.init();
     }
@@ -149,7 +149,7 @@ export class ColorwayApp {
             }
         });
 
-        this.setupColorInputs();
+        this.setupColourInputs();
         this.render();
     }
 
@@ -157,10 +157,10 @@ export class ColorwayApp {
         if (this.panels.length >= 5) return;
 
         const id = this.nextId++;
-        const color = getRandomColor();
-        const newLeaf = new LeafNode(id, color);
+        const colour = getRandomColour();
+        const newLeaf = new LeafNode(id, colour);
 
-        this.panels.push({ id, color });
+        this.panels.push({ id, colour });
         this.layoutTree = this.splitLastLeaf(this.layoutTree, newLeaf);
         this.render();
     }
@@ -213,7 +213,7 @@ export class ColorwayApp {
         if (node.type === 'leaf') {
             const div = document.createElement('div');
             div.className = 'panel';
-            div.style.backgroundColor = node.color;
+            div.style.backgroundColor = node.colour;
             div.dataset.id = node.id;
             return div;
         } else {
@@ -229,7 +229,7 @@ export class ColorwayApp {
         this.editingPanelId = panelId;
         const panel = this.panels.find(p => p.id === panelId);
         if (panel) {
-            this.updateModalInputs(panel.color);
+            this.updateModalInputs(panel.colour);
             this.modalOverlay.classList.remove('hidden');
         }
     }
@@ -239,9 +239,9 @@ export class ColorwayApp {
         this.editingPanelId = null;
     }
 
-    updateModalInputs(color) {
-        this.hexInput.value = color.toUpperCase();
-        const rgb = hexToRgb(color);
+    updateModalInputs(colour) {
+        this.hexInput.value = colour.toUpperCase();
+        const rgb = hexToRgb(colour);
         this.rgbR.value = rgb.r;
         this.rgbG.value = rgb.g;
         this.rgbB.value = rgb.b;
@@ -251,15 +251,15 @@ export class ColorwayApp {
         this.hslS.value = hsl.s;
         this.hslL.value = hsl.l;
 
-        this.colorPreview.style.backgroundColor = color;
+        this.colourPreview.style.backgroundColor = colour;
     }
 
-    setupColorInputs() {
+    setupColourInputs() {
         this.hexInput.addEventListener('input', (e) => {
             let val = e.target.value;
             if (!val.startsWith('#')) val = '#' + val;
             if (/^#[0-9A-F]{3,6}$/i.test(val)) {
-                this.applyColor(val);
+                this.applyColour(val);
             }
         });
 
@@ -268,7 +268,7 @@ export class ColorwayApp {
             const g = parseInt(this.rgbG.value) || 0;
             const b = parseInt(this.rgbB.value) || 0;
             const hex = rgbToHex(r, g, b);
-            this.applyColor(hex, 'rgb');
+            this.applyColour(hex, 'rgb');
         };
         this.rgbR.addEventListener('input', updateRgb);
         this.rgbG.addEventListener('input', updateRgb);
@@ -280,33 +280,33 @@ export class ColorwayApp {
             const l = parseInt(this.hslL.value);
             const rgb = hslToRgb(h, s, l);
             const hex = rgbToHex(rgb.r, rgb.g, rgb.b);
-            this.applyColor(hex, 'hsl');
+            this.applyColour(hex, 'hsl');
         };
         this.hslH.addEventListener('input', updateHsl);
         this.hslS.addEventListener('input', updateHsl);
         this.hslL.addEventListener('input', updateHsl);
     }
 
-    updateNodeColorById(node, id, newColor) {
+    updateNodeColourById(node, id, newColour) {
         if (node.type === 'leaf') {
             if (node.id === id) {
-                node.color = newColor;
+                node.colour = newColour;
                 return true;
             }
             return false;
         }
         if (node.type === 'split') {
-            return this.updateNodeColorById(node.child1, id, newColor) ||
-                   this.updateNodeColorById(node.child2, id, newColor);
+            return this.updateNodeColourById(node.child1, id, newColour) ||
+                   this.updateNodeColourById(node.child2, id, newColour);
         }
         return false;
     }
 
-    applyColor(hex, source = '') {
+    applyColour(hex, source = '') {
         const panel = this.panels.find(p => p.id === this.editingPanelId);
         if (panel) {
-            panel.color = hex;
-            this.updateNodeColorById(this.layoutTree, this.editingPanelId, hex);
+            panel.colour = hex;
+            this.updateNodeColourById(this.layoutTree, this.editingPanelId, hex);
             if (source !== 'hex') this.hexInput.value = hex.toUpperCase();
             if (source !== 'rgb') {
                 const rgb = hexToRgb(hex);
@@ -321,7 +321,7 @@ export class ColorwayApp {
                 this.hslS.value = hsl.s;
                 this.hslL.value = hsl.l;
             }
-            this.colorPreview.style.backgroundColor = hex;
+            this.colourPreview.style.backgroundColor = hex;
             this.render();
         }
     }
@@ -329,6 +329,6 @@ export class ColorwayApp {
 
 if (typeof window !== 'undefined') {
     document.addEventListener('DOMContentLoaded', () => {
-        new ColorwayApp();
+        new ColourwayApp();
     });
 }

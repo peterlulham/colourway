@@ -1,11 +1,11 @@
 /* Copyright (c) 2026 Peter Lulham. Licensed under the MIT License. */
 
 :root {
-    --color-bg-overlay: rgba(0, 0, 0, 0.5);
-    --color-surface: #ffffff;
-    --color-text: #333333;
-    --color-border: #cccccc;
-    --color-shadow: rgba(0, 0, 0, 0.1);
+    --colour-bg-overlay: rgba(0, 0, 0, 0.5);
+    --colour-surface: #ffffff;
+    --colour-text: #333333;
+    --colour-border: #cccccc;
+    --colour-shadow: rgba(0, 0, 0, 0.1);
     --radius-md: 12px;
     --radius-round: 25px;
     --spacing-base: 1rem;
@@ -25,7 +25,7 @@ body, html {
     height: 100%;
     overflow: hidden;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: var(--color-text);
+    color: var(--colour-text);
 }
 
 .app {
@@ -82,7 +82,7 @@ body, html {
     border-radius: var(--radius-round);
     border: none;
     background-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 4px 6px var(--color-shadow);
+    box-shadow: 0 4px 6px var(--colour-shadow);
     font-size: 24px;
     cursor: pointer;
     display: flex;
@@ -106,7 +106,7 @@ body, html {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--color-bg-overlay);
+    background-color: var(--colour-bg-overlay);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -117,8 +117,8 @@ body, html {
     display: none;
 }
 
-.color-modal {
-    background: var(--color-surface);
+.colour-modal {
+    background: var(--colour-surface);
     padding: 2rem;
     border-radius: var(--radius-md);
     width: 90%;
@@ -137,7 +137,7 @@ body, html {
     cursor: pointer;
 }
 
-.color-modal h2 {
+.colour-modal h2 {
     margin-bottom: 1.5rem;
     text-align: center;
 }
@@ -162,7 +162,7 @@ input[type="text"],
 input[type="number"] {
     width: 100%;
     padding: 0.5rem;
-    border: 1px solid var(--color-border);
+    border: 1px solid var(--colour-border);
     border-radius: 4px;
 }
 
@@ -187,7 +187,7 @@ input[type="number"] {
     flex-grow: 1;
 }
 
-#color-preview {
+#colour-preview {
     width: 100%;
     height: 50px;
     border-radius: 4px;
@@ -214,7 +214,7 @@ input[type="number"] {
         flex-direction: column !important;
     }
     
-    .color-modal {
+    .colour-modal {
         padding: 1rem;
     }
 }

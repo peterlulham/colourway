@@ -3,7 +3,7 @@
 import { expect, test, describe } from 'vitest';
 import { hexToRgb, rgbToHex, rgbToHsl, hslToRgb } from '../app.js';
 
-describe('Color Conversion Utilities', () => {
+describe('Colour Conversion Utilities', () => {
     test('hexToRgb handles 6-digit hex', () => {
         expect(hexToRgb('#ffffff')).toEqual({ r: 255, g: 255, b: 255 });
         expect(hexToRgb('#000000')).toEqual({ r: 0, g: 0, b: 0 });

@@ -1,7 +1,7 @@
 // Copyright (c) 2026 Peter Lulham. Licensed under the MIT License.
 
 import { expect, test, describe, beforeEach } from 'vitest';
-import { ColorwayApp, LeafNode, SplitNode } from '../app.js';
+import { ColourwayApp, LeafNode, SplitNode } from '../app.js';
 import { JSDOM } from 'jsdom';
 
 describe('Tiling Layout Engine', () => {
@@ -19,9 +19,9 @@ describe('Tiling Layout Engine', () => {
                         <button id="remove-btn" aria-label="Remove Panel">−</button>
                     </section>
                     <div class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-                        <div class="color-modal">
+                        <div class="colour-modal">
                             <button id="close-modal" aria-label="Close modal">&times;</button>
-                            <h2 id="modal-title">Edit Color</h2>
+                            <h2 id="modal-title">Edit Colour</h2>
                             <div class="input-group">
                                 <label for="hex-input">Hex</label>
                                 <input type="text" id="hex-input">
@@ -45,7 +45,7 @@ describe('Tiling Layout Engine', () => {
                                     <div class="slider-row"><label for="hsl-l">L</label><input type="range" id="hsl-l" min="0" max="100"></div>
                                 </div>
                             </fieldset>
-                            <div id="color-preview" class="color-preview"></div>
+                            <div id="colour-preview" class="colour-preview"></div>
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ describe('Tiling Layout Engine', () => {
         global.Node = dom.window.Node;
         global.Element = dom.window.Element;
 
-        app = new ColorwayApp();
+        app = new ColourwayApp();
     });
 
     test('initial state has one panel', () => {

@@ -1,7 +1,7 @@
 {
   "name": "colourway",
   "version": "1.0.0",
-  "description": "Colorway application",
+  "description": "Colourway application",
   "main": "app.js",
   "type": "module",
   "scripts": {

@@ -1,6 +1,6 @@
 # Colourway
 
-Colourway is a delightful little space to explore the beauty of color! It's a tiling color palette explorer that lets you build your own unique visual arrangements. Want more variety? Just add more panels! Feeling minimalist? Remove them! Click on any panel to dive deep into its DNA with HSL, RGB, and Hex values. It's play, experiment, and design all in one.
+Colourway is a delightful little space to explore the beauty of colour! It's a tiling colour palette explorer that lets you build your own unique visual arrangements. Want more variety? Just add more panels! Feeling minimalist? Remove them! Click on any panel to dive deep into its DNA with HSL, RGB, and Hex values. It's play, experiment, and design all in one.
 
 ## Technical Overview
 
@@ -11,7 +11,7 @@ This project is built with a commitment to simplicity and performance.
 
 ### Architecture
 
-The application employs a recursive binary tree to manage the "dwindling" tiling layout. Each node in the tree is either a leaf node (representing a color panel) or a split node (representing a spatial division).
+The application employs a recursive binary tree to manage the "dwindling" tiling layout. Each node in the tree is either a leaf node (representing a colour panel) or a split node (representing a spatial division).
 
 ```mermaid
 graph TD
@@ -36,8 +36,8 @@ graph TD
 | :--- | :--- |
 | `index.html` | Main entry point and semantic structure. |
 | `styles.css` | Tiling layout (Flexbox) and UI styling. |
-| `app.js` | Core logic: Tiling engine, state management, and color conversion. |
-| `tests/` | Unit tests for color math and layout tree integrity. |
+| `app.js` | Core logic: Tiling engine, state management, and colour conversion. |
+| `tests/` | Unit tests for colour math and layout tree integrity. |
 | `compose.yaml` | Docker Compose configuration for local development. |
 
 ### Architectural Note

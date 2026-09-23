@@ -5,8 +5,8 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "vitest run",
-    "test:coverage": "vitest run --coverage"
+    "test": "vitest run --pool=threads",
+    "test:coverage": "vitest run --coverage --pool=threads"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^5.0.1",

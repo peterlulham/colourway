@@ -2,16 +2,12 @@
 
 import { expect, test, describe, beforeEach } from 'vitest';
 import { ColourwayApp, LeafNode, SplitNode } from '../app.js';
-import { JSDOM } from 'jsdom';
 
 describe('Tiling Layout Engine', () => {
     let app;
 
     beforeEach(() => {
-        const dom = new JSDOM(`
-            <!DOCTYPE html>
-            <html lang="en">
-            <body style="width: 1000px; height: 1000px;">
+        document.body.innerHTML = `
                 <div id="app">
                     <main class="layout-container"></main>
                     <section class="controls" aria-label="Layout Controls">
@@ -49,14 +45,7 @@ describe('Tiling Layout Engine', () => {
                         </div>
                     </div>
                 </div>
-            </body>
-            </html>
-        `);
-        global.document = dom.window.document;
-        global.window = dom.window;
-        global.HTMLElement = dom.window.HTMLElement;
-        global.Node = dom.window.Node;
-        global.Element = dom.window.Element;
+        `;
 
         app = new ColourwayApp();
     });

@@ -52,11 +52,11 @@ describe('Tiling Layout Engine', () => {
             </body>
             </html>
         `);
-        global.document = dom.window.document;
-        global.window = dom.window;
-        global.HTMLElement = dom.window.HTMLElement;
-        global.Node = dom.window.Node;
-        global.Element = dom.window.Element;
+        Object.defineProperty(global, 'document', { value: dom.window.document, writable: true });
+        Object.defineProperty(global, 'window', { value: dom.window, writable: true });
+        Object.defineProperty(global, 'HTMLElement', { value: dom.window.HTMLElement, writable: true });
+        Object.defineProperty(global, 'Node', { value: dom.window.Node, writable: true });
+        Object.defineProperty(global, 'Element', { value: dom.window.Element, writable: true });
 
         app = new ColourwayApp();
     });
